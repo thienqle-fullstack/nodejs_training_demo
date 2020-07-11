@@ -1,3 +1,3 @@
-[x] Callback function concept
-[x] loading module
-[x] Hello world node.js
+[x] Callback function concept <br/>
+[x] loading module <br/>
+[x] Hello world node.js <br/>
