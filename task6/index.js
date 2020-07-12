@@ -46,7 +46,7 @@ app.get("/api/employees",(req,res,next) => {
 /* GET ONE */
 app.get("/api/employees/:id",(req,res,next) => {
     let id = req.params.id;
-    Employee.findByID(id,function(err,object){
+    Employee.findById(id,function(err,object){
         if (err) return next(err); // Pass errors to Express.
         res.json(object)
     })
