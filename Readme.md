@@ -6,3 +6,4 @@
 [x] task4 - Static folder Websites with Express - not specify the route<br/>
 [x] task5 - RESTful APIs <br/>
 [x] task6 - CRUD operations with Mongoose </br>
+[x] task7 - simple jwt implementation </br>
