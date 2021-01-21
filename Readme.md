@@ -8,3 +8,5 @@
 [x] task6 - CRUD operations with Mongoose </br>
 [x] task7 - Using async/await</br>
 [x] task8 - simple jwt implementation </br>
+[x] *task9 - Add frontend with no JS framework </br>
+[x] *task10 - Add css Tempalate that not using framework  </br>
