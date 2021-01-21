@@ -1,0 +1,34 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "name": "Tim",
+      "email": "tim@mail.com",
+      "salary": 50000
+    },
+    {
+      "id": 2,
+      "name": "Tom",
+      "email": "tim@mail.com",
+      "salary": 60000
+    },
+    {
+      "id": "3",
+      "name": "Test",
+      "email": "jelloe",
+      "salary": "1293233"
+    },
+    {
+      "id": "4",
+      "name": "Bi",
+      "email": "test",
+      "salary": "1899000"
+    },
+    {
+      "id": "6",
+      "name": "tet",
+      "email": "thien@summitworks.com",
+      "salary": "170000"
+    }
+  ]
+}
