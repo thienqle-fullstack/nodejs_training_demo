@@ -138,9 +138,11 @@ function displayObject(data){
 function displayTable(list){
     
     output = '<h3>Employee List </h3><br/>'
-    output += `<input class="btn btn-success" type="button" onclick='location.hash= "#add"' value="Add new"/><br/>`
     output += `<br/>`
     output += '<table>'
+    output += '<tr><td colspan="6">'
+    output += `<input class="btn btn-success" type="button" onclick='location.hash= "#add"' style="float:right" value="Add new"/><br/>`
+    output += '</td></tr>'
     output += '<tr>'
     output += '<th>ID</th>'
     output += '<th>Name</th>'
