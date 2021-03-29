@@ -1,0 +1,78 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript Call back functions
+		</p>
+		<script>
+
+		
+			//A simple callback in javascript
+			/* START */
+			function displayName(name) {
+				alert('Hello ' + name);
+			}
+
+			function getName(callback) {
+			  var name = prompt('Please enter your name.');
+			  callback(name);
+			}
+			
+			//When Getname runnning it need to call displayName 
+			//GetName get the data and then it call displayName on that data
+			
+			getName(displayName);
+
+			/* END */
+			
+			//A callback hell in javascript
+			/*START */
+			//When getData run it will need to run getMoreData
+			function getData(callback){
+				var data = 'From getData; '
+				callback(data)
+			}
+			
+			function getMoreData(data,callback){
+				var outcome = data + 'From getMoreData; '
+				callback(outcome)
+			}
+			
+			//getData(() => getMoreData('a',() => console.log('done!')))
+			//getData(a => getMoreData(a,b => console.log(b)))
+			//getData(a => getMoreData(a,
+			//		b => getMoreData(b,
+			//			(b) => console.log(b))))
+			getData(a => {
+				getMoreData(a,b => {
+					getMoreData(b,c => {
+							getMoreData(c,d => {
+								getMoreData(d,e => {
+									console.log(e)
+								})
+							})
+						})
+					})
+				})
+			
+			/* END */
+
+			function myFunction1(callback) {
+				setTimeout(function() {
+					console.log("1")
+				},2000);
+			  	callback();
+			}
+
+			function myFunction2(){
+				setTimeout(function() {
+					console.log("2")
+				},1000);
+			}
+			
+			myFunction1(myFunction2)
+			
+		</script>
+	</body>
+</html>

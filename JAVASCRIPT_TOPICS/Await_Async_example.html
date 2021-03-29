@@ -1,0 +1,33 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript await/async. 
+		
+		</p>
+		<script>
+			
+			//Using async/await
+            function getData(){
+				var data = 'From getData; '
+				return data
+			}
+			
+			function getMoreData(data){
+				var outcome = data + 'From getMoreData; '
+				return outcome
+			}
+
+
+			(async () => {
+				const a = await getData();
+				const b = await getMoreData(a);
+				const c = await getMoreData(b);
+				const d = await getMoreData(c);
+				const e = await getMoreData(d);
+				console.log(e);
+			})();
+		</script>
+	</body>
+</html>

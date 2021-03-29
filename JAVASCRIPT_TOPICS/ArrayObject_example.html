@@ -1,0 +1,76 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		
+		<p id="content"></p>
+		<script>
+			
+			const data = [
+				{
+					itemId:1,
+					details: [
+						{
+							subItemId: 1,
+							description: "hello 1"
+						},
+						{
+							subItemId: 2,
+							description: "hello 2"
+						}
+					]
+				},
+				{
+					itemId:2,
+					details: [
+						{
+							subItemId: 3,
+							description: "hello 3"
+						},
+						{
+							subItemId: 4,
+							description: "hello 4"
+						}
+					]
+				}
+			]
+			
+			function visitItem(data){
+				//keys = Object.keys(data);
+				//TypeOf work with number and string
+				if(typeof data === "string" || typeof data === "number"){
+					console.log("it is a string")
+					return data + "<br/>";
+				}
+				
+				var output = '';
+				if(data instanceof Array === true){
+					console.log("it is an array")
+					//console.log(data)
+					for(let i=0;i<data.length;i++){
+						output+= visitItem(data[i]) + "<br/>";
+					}
+					return "<p>" + output + "</p>";
+				}
+				
+				if(data instanceof Object === true){
+					console.log("it is an object")
+					//console.log(data)
+					let keys = Object.keys(data);
+					for(let i = 0;i<keys.length;i++){
+						output+= keys[i] + " : " + visitItem(data[keys[i]]) + "<br/>";
+					}
+					return output;
+				}
+				
+				
+				
+			}
+			
+			console.log(visitItem(data));
+			document.getElementById("content").innerHTML =  visitItem(data)
+			
+		</script>
+	</body>
+</html>

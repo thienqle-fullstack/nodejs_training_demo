@@ -1,0 +1,101 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript promise. 
+            <br/>Good doc: 
+            https://dev.to/viniciuskneves/yet-another-post-about-asyncawait-and-promises-49gg
+        </p>
+        
+		<script>
+			
+			
+			let promiseToCleanTheRoom = new Promise(function(resolve,reject){
+				let isClean = true;
+				if(isClean){
+					resolve({msg:'Clean'})
+				} else {
+					reject({msg:'Not clean'})
+				}
+			});
+			
+			promiseToCleanTheRoom.then(resolve).catch(reject)		
+			
+			function resolve(msg){
+				console.log(msg)
+			}
+			
+			function reject(msg){
+				console.log(msg)
+			}
+			
+			//Using Promises
+			/*getData()
+			.then(a=>getMoreData(a))
+			.then(b=>getMoreData(b))
+			.then(c=>getMoreData(c))
+			.then(d=>getMoreData(d))
+			.then(e=>console.log(e));
+			*/
+
+            // function doSomething() {
+            //     return Promise.resolve('#2');
+            // }
+
+            // const promise = doSomething().then(console.log);
+
+            // console.log('#1');
+            // console.log(promise);
+
+            var promise = new Promise(function(resolve, reject) { 
+                const x = "geeksforgeeks"; 
+                const y = "geeksforgeeks"
+                if(x === y) { 
+                    resolve(); 
+                } else { 
+                    reject(); 
+                } 
+            }); 
+            
+            promise. 
+                then(function () { 
+                    console.log('Success, You are a GEEK'); 
+                }). 
+                catch(function () { 
+                    console.log('Some error has occured'); 
+                }); 
+			//console.log(promise)
+
+
+            const promise1 = new Promise(resolve => {
+                setTimeout(() => {
+                    resolve('Hello from a Promise!');
+                }, 2000);
+            });
+
+            promise1.then(value => console.log(value));
+            //console.log(promise1)
+
+
+            /*SIMPLE */
+            function myFunction1(){
+                return new Promise((resolve) => {
+                    setTimeout( function(){
+			            console.log("1")
+			        },1000);
+                    resolve();
+                })
+            }
+
+            function myFunction2(){
+				setTimeout(function() {
+					console.log("2")
+				},1000);
+			}
+
+            myFunction1().then(myFunction2)
+            
+		</script>
+	</body>
+</html>

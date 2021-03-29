@@ -1,0 +1,25 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript promise. 
+            <br/>Good doc: 
+            https://dev.to/viniciuskneves/yet-another-post-about-asyncawait-and-promises-49gg
+        </p>
+        
+        
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.0/Rx.js"></script>
+    <script>
+        
+        // Creation
+        const observable = new Rx.Observable(observer => {
+            for (let i = 0; i < 3; i++) {
+                observer.next(i);
+            }
+        });// Usage
+        observable.subscribe(value => console.log(value));
+    
+    </script>
+	</body>
+</html>

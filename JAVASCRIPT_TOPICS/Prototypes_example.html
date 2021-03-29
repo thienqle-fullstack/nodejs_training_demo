@@ -1,0 +1,52 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript prototype. 
+		Open the console log to see the results
+		</p>
+		<p>
+		The code contains OOP concept in Javascript
+		</p>
+		<p>Some javascript tips<p>
+		<ul>
+			<li>Use strict: can make sure that we define variable using var. 
+			So there will be no unmanaged hoisting
+			<code><p>
+				<br/>"use strict";
+				<br/>x = 3.14;       // This will cause an error because x is not declared
+				</p>
+			</code>
+			</li>
+			
+		</ul>
+		<script>
+			
+			//Define a class in javascript 
+			function Person(name){
+				this.name = name;
+				this.sayName = function(){
+					console.log("Function is call for:" + this.name);
+				};
+			}
+			
+			//Initailize object using this class
+			var person1 = new Person("Peter");
+			var person2 = new Person("David");
+			
+			console.log(person1.name);
+			console.log(person2.name);
+			
+			person1.sayName();
+			person2.sayName();
+
+			//Initailize but forgetting new keyword (function will not become an object)
+			var person3 = Person("Alan");
+			console.log(person3 instanceof Person) //print out false 
+			
+			
+			
+		</script>
+	</body>
+</html>

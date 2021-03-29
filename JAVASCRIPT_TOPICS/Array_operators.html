@@ -1,0 +1,39 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript prototype. 
+		Open the console log to see the results
+		</p>
+		<p>
+		The code contains map,filter,reduce of Array in Javascript
+		</p>
+		<p>Some javascript tips<p>
+		<ul>
+			<li>Use strict: can make sure that we define variable using var. 
+			So there will be no unmanaged hoisting
+			<code><p>
+				<br/>"use strict";
+				<br/>x = 3.14;       // This will cause an error because x is not declared
+				</p>
+			</code>
+			</li>
+			
+		</ul>
+		<script>
+			myArray = [1,2,3,4,5,6,7]
+			//Result of filter will be a different array
+			console.log(myArray.filter(number => number > 4))
+			
+			//Result of map will be a different array
+			console.log(myArray.map(number => number * 4))
+			
+			//Result of reduce will be a different array
+			console.log(myArray.reduce((acc,current)=>acc+current,0))
+			
+			//We dont have pipe in Array
+			//console.log(myArray.pipe(myArray.filter(number => number > 4)))
+		</script>
+	</body>
+</html>
