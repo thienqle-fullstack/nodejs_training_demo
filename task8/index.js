@@ -77,35 +77,38 @@ app.put("/api/employees/:id",(req,res,next) => {
 /* START - JWT */
 
 //Temporary username and pass
-var userId = 1;
-var username;
-var password;
+let users = [
+    {'id': 1,'username': "admin","password":"admin"}
+]
 
-app.post('/register',(req,res) => {
-    let user = req.body
-    if(user==null || user==undefined) {
-        console.log(err);
-        res.status(401).send('No user found')
+app.post('/register',(req,res) =>{
+    let user = req.body;
+    if(user==null || user==undefined){
+        res.status(401).send("Invalid user data!")
     }
-    //Save the user and send them token
-    username = user.username;
-    password = user.password;
-    let payload = {subject:userId} 
-    let token = jwt.sign(payload, 'secretKey')
-    res.status(200).send({'msg':'You have been succesfully register!'})    
+    user.id=users.length
+    users.push(user);
+    res.status(200).send({'msg':'You have been sucssefully registered!'})
 })
 
 app.post('/login',(req,res) => {
     let user = req.body
-    if(user==null || user==undefined) {
-        console.log(err);
-        res.status(401).send('No user found')
+    if(user==null || user==undefined){
+        res.status(401).send("Invalid user data!")
     }
-    //Save the user and send them token
-
-    if(user.username==username && user.password==password){
-        let payload = {subject:userId} 
-        let token = jwt.sign(payload, 'secretKey')
+    let valid = false;
+    let userID = 0;
+    for(let i=0;i<users.length;i++){
+        if(user.username==users[i].username 
+            && user.password == users[i].password) {
+            valid = true;
+            userID = users[i].id;
+            break
+        }
+    }
+    if(valid){
+        let payload = {subject:userID}
+        let token = jwt.sign(payload,'secretKey')
         res.status(200).send({token})
     } else {
         res.status(400).send({"msg":"Login Failed!"})
@@ -129,13 +132,19 @@ function verifyToken(req, res, next) {
 }
 
 //Getting data with this route need a token
-app.get('/user',verifyToken,(req,res) => {
-    data = {
-        "msg":`Only authorized user can see this information`,
-        "userId":`You id is ${userId}`,
-        "user":`You username is ${username}`,
-    }
-    res.json(data)
+app.get('/user',verifyToken,(req,res) =>{
+    let userList = []
+    console.log(users)
+    let token = req.headers.authorization.split(' ')[1]
+    console.log(token)
+    users.forEach(element => {
+        user = {
+            "userID": element.id,
+            "username": element.username
+        }
+        userList.push(user);
+    });
+    res.json(userList)
 })
 /* END - JWT */
 
