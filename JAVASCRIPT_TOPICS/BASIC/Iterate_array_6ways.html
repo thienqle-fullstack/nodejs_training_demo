@@ -1,0 +1,72 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript. 
+		Open the console log to see the results
+		</p>
+		
+		<script>
+        list = ["Apple","Pear","Plump","Strawberries","Orange",]
+        console.log(list)
+
+        /* NORMAL FOR LOOP */
+        console.log(`
+        1. A regular forloop`)
+
+        for(let i=0;i<list.length;i++){
+            console.log(list[i])
+        }
+
+        /* WHILE LOOP */
+        console.log(`
+        2. A regular while`)
+        let i = 0
+        while(i < list.length) {
+            console.log(list[i])
+            i++;
+        }
+
+        /* FOR/OF */
+        console.log(`
+        3. A for/of Loop`)
+
+        for(let elem of list){
+            console.log(elem)
+        }
+
+        /* array.Foreach */
+        console.log(`
+        4. A forEach with callback function`)
+
+        list.forEach(element => {
+            console.log(element)
+        });
+
+        /* map */
+        console.log(`
+        5. using map/filter/reduce`)
+        console.log('***** MAP *****')
+        list.map(element => { console.log(element)});
+        console.log('***** Filter *****')
+        list.filter(element => { console.log(element)});
+        console.log('***** Reduce *****')
+        list.filter(element => { console.log(element)});
+
+
+       /* DO/WHILE LOOP */
+        console.log(`
+        6. A regular do/while`)
+        let j = 0
+        do {
+            console.log(list[j])
+            j++;
+        }
+        while(j < list.length) 
+            
+        
+
+		</script>
+	</body>
+</html>

@@ -1,13 +1,25 @@
-function myfunction1(callback){
-    //console.log("From function 1!")
-    setTimeout(()=>{console.log("From function 1!")},2000);
-    callback()
+// function myfunction1(){
+//     setTimeout(()=>{
+//         console.log("From function 1!");
+//     },2000);
+// }
+
+//Make function1 to a promise to make sure it run first
+function myfunction1(){
+    return new Promise((resolve) => {
+        setTimeout( function(){
+            console.log("From function 1!");
+            resolve();
+        },2000);
+        
+    })
 }
 
 function myfunction2(){
-    console.log("From function 2!")
+    setTimeout(function() {
+        console.log("From function 2!")
+    },1000);
 }
-
 /* Run normally */
 // console.log("Run in sequence")
 // myfunction1(myfunction2);
@@ -18,21 +30,36 @@ function handleError(){
     console.log("Some thing wrong!")
 }
 
-let myPromise = new Promise((resolve,reject) =>
-    resolve()
-)
-
-myPromise.then(myfunction1)
-        .then(myfunction2)
-        .catch(handleError);
+myfunction1().then(myfunction2).catch(handleError);
 
 /* Run with async/await */
 console.log("Run with async/await");
 // Create a wrap around function with async 
 // to sync all of async function 
 
+// function myfunction3(msg){
+//     console.log(msg);
+//     setTimeout(()=>{
+//         console.log("From function 3!");
+//     },2000);
+// }
+
+// function myfunction4(msg){
+//     setTimeout(()=>{
+//         console.log(msg);
+//         console.log("From function 4!");
+//     },1000);
+// }
+
+// function myfunction5(msg){
+//     setTimeout(()=>{
+//         console.log(msg);
+//         console.log("From function 5!");
+//     },500);
+// }
+
 // (async ()=>{
-//     await myfunction1();
-//     await myfunction2();
-//     await myfunction3();
+//     a = await myfunction3("hello");
+//     b = await myfunction4(a);
+//     c= await myfunction5(b);
 // })() 
