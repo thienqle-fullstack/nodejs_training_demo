@@ -1,0 +1,39 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript. 
+		Open the console log to see the results
+		</p>
+		
+		<script>
+            
+            //FUNCTION DECLARATION
+            var result1 = add1(1,2); //Work properly
+            function add1(a,b) { //FUNCTION DECLARATION
+                return a+b
+            }
+
+            //FUNCTION EXPRESSIONS (a variable that is a function)
+            //var result2 = add2(1,2); //ERROR
+            var add2 = function(a,b){ //FUNCTION EXPRESSIONS
+                return a + b
+            }
+            var result2 = add2(1,2);
+
+            //YOU CANNOT CALL FUNCTION of FUNCITON EXPRSSION BEFORE IT IS DECLARE
+            //NO HOISTED FOR FUNCTION EXPRESSION
+
+            //ARROW FUNCTION
+            var a = () => {console.log("hello arrow function")}
+            a();
+
+            //Create a function that run right away
+            (() => {console.log("hello arrow function")})()
+
+
+
+		</script>
+	</body>
+</html>

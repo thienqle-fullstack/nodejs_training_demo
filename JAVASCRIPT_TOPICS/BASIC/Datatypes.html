@@ -1,0 +1,127 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript. 
+		Open the console log to see the results
+		</p>
+		
+		<script>
+        /*
+            Primitive wrapper objects in JavaScript
+            Except for null and undefined, all primitive values have object equivalents that wrap around the primitive values:
+
+            String for the string primitive.
+            Number for the number primitive.
+            BigInt for the bigint primitive.
+            Boolean for the boolean primitive.
+            Symbol for the symbol primitive.
+            The wrapper's valueOf() method returns the primitive value.
+
+            AT THE MOMENT WE CREATE THESE DATATYPE. 
+            JAVASCRIPT WILL CREATE AN WRAP ARROUND OBJECTS
+            THAT'S WHY WE CAN USE SOME METHODS ON THAT VALUE
+        */
+            console.log(`
+
+                        ***** NUMBER *****`)
+            n = 1000;
+            console.log(n)
+            console.log(n.valueOf()) //number is an wrapper object and it has valueOf as a method
+            
+            console.log(typeof(n))
+            console.log(typeof n === "number")
+
+            console.log(Object.getPrototypeOf(n));
+
+            /* DATE TIME */
+            console.log(`
+
+                        ***** STRING *****`)
+			s = "Hello Javascript"  
+            console.log(s)
+            console.log(s.valueOf()) 
+
+            console.log(typeof(s))
+            console.log(typeof s === "string")
+
+            console.log(Object.getPrototypeOf(s));
+            console.log("You can use backstick ` for string which take into account of breakline");
+
+
+            console.log(`
+
+                        ***** BOOLEAN *****`)
+            b = true;
+            console.log(b)
+            console.log(b.valueOf()) 
+
+            console.log(typeof(b))
+            console.log(typeof b === "boolean")
+
+            console.log(Object.getPrototypeOf(b));
+
+
+            console.log(`
+
+                        ***** NULL *****`)
+            N = null;
+            console.log(N)
+            console.log(`N.valueOf() will give you error, because no wrapper object for Null value`)
+            //console.log(N.valueOf()) //Error
+            console.log(`But null is not an object, but type of null is displaying at object which is a misleading`)
+            console.log(typeof(N))
+            console.log(typeof N === "object")
+
+            console.log(`Object.getPrototypeOf(N) will give you error, because it cannot convert undefined or null to object`);
+            console.log(`SIMILAR WITH UNDEFINED`);
+
+            /* OBJECTS */
+            console.log(`
+                        ***** OBJECT TYPES *****`)
+            console.log(`
+                        ***** SIMPLE OBJECT TYPES *****`)
+            o = {
+                a: 1,
+                b: 'something'
+            }
+            console.log(o)
+            console.log(o.valueOf())
+            console.log(typeof(o))
+            console.log(Object.getPrototypeOf(o))
+            console.log(o.hasOwnProperty())
+            console.log(o.a) //Access element
+            console.log(o.b) //Access element
+
+
+            console.log(`
+                        ***** SIMPLE OBJECT TYPES 2 *****`)
+            //You can define object with string
+            o1 = {
+                'a': 1,
+                'b': 'something'
+            }
+            console.log(o1)
+            console.log(o1.valueOf())
+            console.log(typeof(o1))
+            console.log(Object.getPrototypeOf(o1))
+            console.log(o1.hasOwnProperty())
+            console.log(o1.a) //Access element
+            console.log(o1.b) //Access element
+
+            console.log(`
+                        ***** DATE TIME *****`)
+			var current = new Date()            
+            console.log(current)
+            console.log(typeof(current))
+            console.log(Object.getPrototypeOf(current));
+            console.log(Date.now()) //Display as number
+
+            
+
+
+
+		</script>
+	</body>
+</html>

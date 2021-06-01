@@ -1,0 +1,27 @@
+<!Doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<p>This is an example of javascript. 
+		Open the console log to see the results
+		</p>
+		
+		<script>
+            //DOCUMENT IS AN OBJECT THAT HTML PROVIDE
+            console.log(document);
+            console.log(Object.getPrototypeOf(document));
+
+            //Visit child nodes of document (its orgernaized like tree)
+            console.log(document.childNodes)
+            console.log(document.childNodes[1].childNodes)
+
+            //Get P tag content this way
+            console.log(document.childNodes[1].childNodes[2].childNodes[1].innerHTML)
+
+            //Using provide method
+            elem = document.getElementsByTagName('p')
+            console.log(elem[0].innerHTML)
+		</script>
+	</body>
+</html>
