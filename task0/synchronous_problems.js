@@ -20,9 +20,7 @@ function myfunction2(){
         console.log("From function 2!")
     },1000);
 }
-/* Run normally */
-// console.log("Run in sequence")
-// myfunction1(myfunction2);
+
 
 /* Run with promises */
 console.log("Run with promise")
@@ -33,33 +31,31 @@ function handleError(){
 myfunction1().then(myfunction2).catch(handleError);
 
 /* Run with async/await */
-console.log("Run with async/await");
+
 // Create a wrap around function with async 
 // to sync all of async function 
 
-// function myfunction3(msg){
-//     console.log(msg);
-//     setTimeout(()=>{
-//         console.log("From function 3!");
-//     },2000);
-// }
+function myfunction3(){
+    return new Promise((resolve) => {
+        setTimeout( function(){
+            console.log("From function 3!");
+            resolve();
+        },4000);  
+    })
+}
 
-// function myfunction4(msg){
-//     setTimeout(()=>{
-//         console.log(msg);
-//         console.log("From function 4!");
-//     },1000);
-// }
+function myfunction4(){
+    setTimeout(()=>{
+        console.log("From function 4!");
+    },3000);
+}
 
-// function myfunction5(msg){
-//     setTimeout(()=>{
-//         console.log(msg);
-//         console.log("From function 5!");
-//     },500);
-// }
+//Using await and async function to put function in order instead of call promises
+(async () => {
+    console.log("Run with async/await");
+    await myfunction3();
+    await myfunction4();
+})();
 
-// (async ()=>{
-//     a = await myfunction3("hello");
-//     b = await myfunction4(a);
-//     c= await myfunction5(b);
-// })() 
+
+
