@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken')
 const app = express();
+const bcrypt = require('bcrypt');
 /*
 var cors = require('cors')
 
@@ -25,7 +26,9 @@ next();});
 /* START - DATABASE */
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/employees',{ useFindAndModify: true })
+mongoose.connect('mongodb://localhost/employees',{ useNewUrlParser: true,
+                                        useFindAndModify: true,
+                                        useUnifiedTopology: true })
     .then(()=>console.log('You are now connected to database!'))
     .catch((err) => console.log(err))
 
@@ -95,39 +98,61 @@ app.put("/api/employees/:id",(req,res,next) => {
 /* START - JWT */
 
 //Temporary username and pass
-var userId = 1;
-var username;
-var password;
+/* START - JWT */
 
-app.post('/register',(req,res) => {
-    let user = req.body
-    if(user==null || user==undefined) {
-        console.log(err);
-        res.status(401).send('No user found')
+//Temporary username and pass
+let users = [
+    {'id': 1,'username': "admin","password":"admin"}
+]
+
+//hashing default password and replace the plaintext
+let hashSalt = 0 //bcript required hashsalt
+bcrypt.hash("admin",hashSalt,function(err,hash){
+    users[0].password = hash
+    // console.log(users)
+})
+
+
+
+app.post('/register',(req,res) =>{
+    let user = req.body;
+    if(user==null || user==undefined){
+        res.status(401).send("Invalid user data!")
     }
-    //Save the user and send them token
-    username = user.username;
-    password = user.password;
-    let payload = {subject:userId} 
-    let token = jwt.sign(payload, 'secretKey')
-    res.status(200).send({'msg':'You have been succesfully register!'})    
+    user.id=users.length+1
+    //Hash user password
+    bcrypt.hash(user.password,hashSalt,function(err,hash){
+        user.password = hash
+        users.push(user);
+        res.status(200).send({'msg':'You have been sucssefully registered!'})    
+    })
+    
 })
 
 app.post('/login',(req,res) => {
     let user = req.body
-    if(user==null || user==undefined) {
-        console.log(err);
-        res.status(401).send('No user found')
+    if(user==null || user==undefined){
+        res.status(401).send("Invalid user data!")
+        return;
     }
-    //Save the user and send them token
-
-    if(user.username==username && user.password==password){
-        let payload = {subject:userId} 
-        let token = jwt.sign(payload, 'secretKey')
-        res.status(200).send({token})
-    } else {
-        res.status(400).send({"msg":"Login Failed!"})
+    let endloop = false;
+    let userID = 0;
+    for(let i=0;i<users.length;i++){
+        //If we find the user compare their hashed password
+        if(user.username==users[i].username){
+            userID = i;
+            break;            
+        }
     }
+    bcrypt.compare(user.password, users[userID].password, function(err, valid) {
+        if(valid){
+            let payload = {subject:userID}
+            let token = jwt.sign(payload,'secretKey')
+            return res.status(200).send({token})
+        } else {
+            return res.status(400).send({"msg":"Login Failed!"})
+        }
+    });
 })
 
 function verifyToken(req, res, next) {
@@ -143,17 +168,23 @@ function verifyToken(req, res, next) {
       return res.status(401).send('Unauthorized request')    
     }
     req.userId = payload.subject
+    //You can check if current username match with userid to make sure this user used its token to access (not stolen)
     next()
 }
 
 //Getting data with this route need a token
-app.get('/user',verifyToken,(req,res) => {
-    data = {
-        "msg":`Only authorized user can see this information`,
-        "userId":`You id is ${userId}`,
-        "user":`You username is ${username}`,
-    }
-    res.json(data)
+app.get('/user',verifyToken,(req,res) =>{
+    let userList = []
+    let token = req.headers.authorization.split(' ')[1]
+    users.forEach(element => {
+        user = {
+            "userID": element.id,
+            "username": element.username,
+            "password": element.password
+        }
+        userList.push(user);
+    });
+    res.json(userList)
 })
 /* END - JWT */
 
@@ -161,4 +192,4 @@ app.use(express.static(path.join(__dirname,"templates")))
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT,() => `Server is listening on ${PORT}`);
+app.listen(PORT,() => console.log(`Server is listening on ${PORT}`));
