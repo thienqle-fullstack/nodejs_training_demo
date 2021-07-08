@@ -135,7 +135,6 @@ app.post('/login',(req,res) => {
         res.status(401).send("Invalid user data!")
         return;
     }
-    let endloop = false;
     let userID = 0;
     for(let i=0;i<users.length;i++){
         //If we find the user compare their hashed password
