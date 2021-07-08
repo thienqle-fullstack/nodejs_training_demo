@@ -11,3 +11,4 @@
 [x] *task9 - Add frontend with no JS framework </br>
 [x] *task10 - Add css Tempalate that not using framework  </br>
 [x] *task10 - Cors demo  </br>
+[x] *task11 - bscript for password  </br>
